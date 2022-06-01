@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box
+}
+
+body {
+    height: 100vh;
+    font-size: 1rem;
+    font-family: sans-serif;
+    background-color: rgb(243, 242, 242);
+}
+
+#root {
+    display: flex;
+    height: inherit;
+}
+
+.sidebar {
+    flex: 1;
+    max-width: 380px;
+    padding: 3em 1em;
+    background-color: #fff;
+}
+
+.projects-list {
+    list-style: none;
+}
+
+.main {
+    flex: 2;
+    overflow: hidden;
+    padding: 3rem;
+    background-color: #fff;
+}
+
+.tasks-list {
+    max-width: 700px;
+    list-style: none;
+}
