@@ -100,3 +100,8 @@ ul>li {
     background-color: transparent;
     cursor: pointer;
 }
+
+.project_active {
+    font-weight: 600;
+    background-color: #B5FED9;
+}
