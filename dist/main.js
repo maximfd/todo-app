@@ -16,7 +16,17 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_UI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/UI */ \"./src/modules/UI.js\");\n/* harmony import */ var _modules_ProjectsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ProjectsList */ \"./src/modules/ProjectsList.js\");\n\r\n\r\n\r\nconst model = new _modules_ProjectsList__WEBPACK_IMPORTED_MODULE_1__[\"default\"]()\r\nconst view = new _modules_UI__WEBPACK_IMPORTED_MODULE_0__[\"default\"]()\r\n\r\nview.displayProjects(model.projectsList) /* temp */\r\nview.displayTasks(model.getProject('9c66')) /* temp */\n\n//# sourceURL=webpack://todo-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_UI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/UI */ \"./src/modules/UI.js\");\n/* harmony import */ var _modules_ProjectsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ProjectsList */ \"./src/modules/ProjectsList.js\");\n/* harmony import */ var _modules_Events__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/Events */ \"./src/modules/Events.js\");\n\r\n\r\n\r\n\r\nconst model = new _modules_ProjectsList__WEBPACK_IMPORTED_MODULE_1__[\"default\"]()\r\nconst view = new _modules_UI__WEBPACK_IMPORTED_MODULE_0__[\"default\"]()\r\nconst app = new _modules_Events__WEBPACK_IMPORTED_MODULE_2__[\"default\"](model, view)\r\n\n\n//# sourceURL=webpack://todo-app/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/Events.js":
+/*!*******************************!*\
+  !*** ./src/modules/Events.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Events)\n/* harmony export */ });\nclass Events {\r\n    constructor(model, view) {\r\n        this._model = model;\r\n        this._view = view;\r\n\r\n        this.currentProjectId = this._model.projectsList[0].id\r\n\r\n        this._view.displayProjects(this._model.projectsList)\r\n        this._view.displayTasks(this._model.getProject(this.currentProjectId))\r\n    }\r\n}\n\n//# sourceURL=webpack://todo-app/./src/modules/Events.js?");
 
 /***/ }),
 
