@@ -9,6 +9,7 @@ export default class Events {
         this._view.displayTasks(this._model.getProject(this.currentProjectId))
 
         this._view.projectsList.addEventListener('click', this.projectEvents.bind(this))
+        this._view.tasksList.addEventListener('click', this.taskEvents.bind(this))
 
         this._view.projectForm.addEventListener('submit', this.submitProjectsForm.bind(this))
         this._view.taskForm.addEventListener('submit', this.submitTasksForm.bind(this))
@@ -17,16 +18,31 @@ export default class Events {
     }
 
     projectEvents(e) {
-        // Remove highlighting from current project 
-        const prev = document.querySelector(`[data-id="${this.currentProjectId}"]`)
-        if (prev) prev.classList.toggle('project_active')
-        // Set clicked project as current & highlight it 
-        const project = e.target.closest('li')
-        this.currentProjectId = project.dataset.id
-        this.setActiveProject()
+        if (e.target.name === 'delete') {
+            const projectId = e.target.parentElement.dataset.id
+            this._model.deleteProject(projectId)
+            this._view.displayProjects(this._model.projectsList)
+        } else {
+            // Remove highlighting from current project 
+            const prev = document.querySelector(`[data-id="${this.currentProjectId}"]`)
+            if (prev) prev.classList.toggle('project_active')
+            // Set clicked project as current & highlight it 
+            const project = e.target.closest('li')
+            this.currentProjectId = project.dataset.id
+            this.setActiveProject()
 
-        // Display current project tasks list
-        this._view.displayTasks(this._model.getProject(this.currentProjectId))
+            // Display current project tasks list
+            this._view.displayTasks(this._model.getProject(this.currentProjectId))
+        }
+
+    }
+
+    taskEvents(e) {
+        if (e.target.name === 'delete') {
+            const taskId = e.target.parentElement.dataset.id
+            this._model.deleteTask(this.currentProjectId, taskId)
+            this._view.displayTasks(this._model.getProject(this.currentProjectId))
+        }
     }
 
     setActiveProject() {

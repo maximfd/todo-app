@@ -80,7 +80,7 @@ export default class UI {
         project.dataset.id = id
         project.innerHTML = `
             <p class="project__title">${title}</p>
-            <button type="button" class="button icon-button">
+            <button type="button" class="button icon-button" name="delete">
                 &#x2716;
             </button>`
 
@@ -94,7 +94,7 @@ export default class UI {
         task.innerHTML = `
             <input type="checkbox" name="status" id="status">
             <p class="task-title">${title}</p>
-            <button type="button" class="button icon-button">
+            <button type="button" class="button icon-button" name="delete">
                 &#x2716;
             </button>`
 
