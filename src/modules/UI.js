@@ -12,9 +12,20 @@ export default class UI {
 
         this.projectForm = document.createElement('form')
         this.projectForm.classList.add('form', 'projects-form')
-        this.projectForm.innerHTML = `
-            <input class="form__input" type="text" placeholder="Add new project" name="project">
-            <button class="form__btn" type="submit">&#43;</button>`
+
+        this.projectInput = document.createElement('input')
+        this.projectInput.classList.add('form__input')
+        this.projectInput.type = 'text'
+        this.projectInput.placeholder = 'Add new project'
+        this.projectInput.name = 'project'
+
+        this.submitProjectBtn = document.createElement('button')
+        this.submitProjectBtn.classList.add('form__btn')
+        this.submitProjectBtn.type = 'submit'
+        this.submitProjectBtn.innerHTML = '&#43;'
+
+        this.projectForm.append(this.projectInput, this.submitProjectBtn)
+
 
         this.sidebar.append(this.sideTitle, this.projectForm, this.projectsList)
 
@@ -28,9 +39,19 @@ export default class UI {
 
         this.taskForm = document.createElement('form')
         this.taskForm.classList.add('form', 'task-form')
-        this.taskForm.innerHTML = `
-            <input class="form__input" type="text" placeholder="Add new task" name="task">
-            <button class="form__btn" type="submit">&#43;</button>`
+
+        this.taskInput = document.createElement('input')
+        this.taskInput.classList.add('form__input')
+        this.taskInput.type = 'text'
+        this.taskInput.placeholder = 'Add new project'
+        this.taskInput.name = 'project'
+
+        this.submitTaskBtn = document.createElement('button')
+        this.submitTaskBtn.classList.add('form__btn')
+        this.submitTaskBtn.type = 'submit'
+        this.submitTaskBtn.innerHTML = '&#43;'
+
+        this.taskForm.append(this.taskInput, this.submitTaskBtn)
 
         this.main.append(this.mainTitle, this.taskForm, this.tasksList)
 

@@ -10,6 +10,9 @@ export default class Events {
 
         this._view.projectsList.addEventListener('click', this.projectEvents.bind(this))
 
+        this._view.projectForm.addEventListener('submit', this.submitProjectsForm.bind(this))
+        this._view.taskForm.addEventListener('submit', this.submitTasksForm.bind(this))
+
         this.setActiveProject()
     }
 
@@ -29,5 +32,20 @@ export default class Events {
     setActiveProject() {
         const current = document.querySelector(`[data-id="${this.currentProjectId}"]`)
         if (current) current.classList.add('project_active')
+    }
+
+    submitProjectsForm(e) {
+        e.preventDefault();
+        this._model.addProject(this._view.projectInput.value)
+        this._view.projectInput.value = ''
+        this._view.displayProjects(this._model.projectsList)
+        this.setActiveProject()
+    }
+
+    submitTasksForm(e) {
+        e.preventDefault();
+        this._model.addTaskToProject(this.currentProjectId, this._view.taskInput.value)
+        this._view.taskInput.value = ''
+        this._view.displayTasks(this._model.getProject(this.currentProjectId))
     }
 }
