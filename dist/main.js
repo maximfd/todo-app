@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_UI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/UI */ \"./src/modules/UI.js\");\n/* harmony import */ var _modules_ProjectsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ProjectsList */ \"./src/modules/ProjectsList.js\");\n\r\n\n\n//# sourceURL=webpack://todo-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_UI__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/UI */ \"./src/modules/UI.js\");\n/* harmony import */ var _modules_ProjectsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/ProjectsList */ \"./src/modules/ProjectsList.js\");\n\r\n\r\n\r\nconst model = new _modules_ProjectsList__WEBPACK_IMPORTED_MODULE_1__[\"default\"]()\r\nconst view = new _modules_UI__WEBPACK_IMPORTED_MODULE_0__[\"default\"]()\r\n\r\nview.displayProjects(model.projectsList) /* temp */\r\nview.displayTasks(model.getProject('9c66')) /* temp */\n\n//# sourceURL=webpack://todo-app/./src/index.js?");
 
 /***/ }),
 
