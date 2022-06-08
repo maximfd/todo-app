@@ -38,6 +38,11 @@ export default class Events {
     }
 
     taskEvents(e) {
+        console.log(e.target.checked);
+        if (e.target.type === 'checkbox') {
+            const taskId = e.target.parentElement.dataset.id
+            this._model.toggleStatus(this.currentProjectId, taskId)
+        }
         if (e.target.name === 'delete') {
             const taskId = e.target.parentElement.dataset.id
             this._model.deleteTask(this.currentProjectId, taskId)

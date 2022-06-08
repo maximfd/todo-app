@@ -69,7 +69,7 @@ export default class UI {
     displayTasks(project) {
         this.tasksList.innerHTML = ''
         project.getTasksList().forEach(element => {
-            const task = this.createTask(element.id, element.title)
+            const task = this.createTask(element.id, element.title, element.isDone)
             this.tasksList.appendChild(task)
         });
     }
@@ -87,16 +87,28 @@ export default class UI {
         return project
     }
 
-    createTask(id, title) {
+    createTask(id, title, isDone) {
         const task = document.createElement('li')
         task.classList.add('task')
         task.dataset.id = id
-        task.innerHTML = `
-            <input type="checkbox" name="status" id="status">
-            <p class="task-title">${title}</p>
-            <button type="button" class="button icon-button" name="delete">
-                &#x2716;
-            </button>`
+
+        const checkbox = document.createElement('input')
+        checkbox.type = 'checkbox'
+        checkbox.name = 'status'
+        checkbox.id = 'status'
+        checkbox.checked = isDone
+
+        const taskTitle = document.createElement('p')
+        taskTitle.classList.add('task-title')
+        taskTitle.textContent = title
+
+        const button = document.createElement('button')
+        button.type = 'button'
+        button.name = 'delete'
+        button.classList.add('button', 'icon-button')
+        button.innerHTML = '&#x2716'
+
+        task.append(checkbox, taskTitle, button)
 
         return task
     }
