@@ -52,12 +52,22 @@ export default class ProjectsList {
 
     loadFromStorage() {
         const projects = localStorage.getItem("projectsList")
-        if (!projects) return []
+
+        if (!projects || !JSON.parse(projects).length) {
+            return this.setDefaultProjects()
+        }
+
         return JSON.parse(projects).map(item => {
             const project = Object.assign(new Project(), item)
             project.tasks = project.tasks.map(task => Object.assign(new Task(), task))
             return project
         })
+    }
+
+    setDefaultProjects() {
+        return [
+            Object.assign(new Project(), { id: 'inbox', title: 'Inbox', tasks: [] })
+        ]
     }
 
     saveToStorage() {
