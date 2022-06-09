@@ -34,6 +34,7 @@ export default class UI {
         this.mainTitle = document.createElement('h2')
         this.mainTitle.classList.add('section-title', 'tasks-title')
         this.mainTitle.textContent = 'Tasks'
+        this.mainTitle.contentEditable = true
         this.tasksList = document.createElement('ul')
         this.tasksList.classList.add('tasks-list')
 
@@ -67,6 +68,7 @@ export default class UI {
     }
 
     displayTasks(project) {
+        this.mainTitle.textContent = project.title
         this.tasksList.innerHTML = ''
         project.getTasksList().forEach(element => {
             const task = this.createTask(element.id, element.title, element.isDone)
@@ -101,6 +103,7 @@ export default class UI {
         const taskTitle = document.createElement('p')
         taskTitle.classList.add('task-title')
         taskTitle.textContent = title
+        taskTitle.contentEditable = true
 
         const button = document.createElement('button')
         button.type = 'button'

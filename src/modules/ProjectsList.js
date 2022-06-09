@@ -40,6 +40,16 @@ export default class ProjectsList {
         this.saveToStorage()
     }
 
+    editTask(projectId, taskId, content) {
+        this.getProject(projectId).getTask(taskId).editTask(content)
+        this.saveToStorage()
+    }
+
+    editProject(projectId, content) {
+        this.getProject(projectId).editProject(content)
+        this.saveToStorage()
+    }
+
     loadFromStorage() {
         const projects = localStorage.getItem("projectsList")
         if (!projects) return []

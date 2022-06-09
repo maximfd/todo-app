@@ -14,6 +14,9 @@ export default class Events {
         this._view.projectForm.addEventListener('submit', this.submitProjectsForm.bind(this))
         this._view.taskForm.addEventListener('submit', this.submitTasksForm.bind(this))
 
+        this._view.mainTitle.addEventListener('keypress', this.preventLineBreaks)
+        this._view.mainTitle.addEventListener('blur', this.editProject.bind(this))
+
         this.setActiveProject()
     }
 
@@ -38,7 +41,6 @@ export default class Events {
     }
 
     taskEvents(e) {
-        console.log(e.target.checked);
         if (e.target.type === 'checkbox') {
             const taskId = e.target.parentElement.dataset.id
             this._model.toggleStatus(this.currentProjectId, taskId)
@@ -48,6 +50,23 @@ export default class Events {
             this._model.deleteTask(this.currentProjectId, taskId)
             this._view.displayTasks(this._model.getProject(this.currentProjectId))
         }
+        if (e.target.classList.contains('task-title')) {
+            e.target.addEventListener('keypress', this.preventLineBreaks)
+            e.target.addEventListener('blur', this.editTask.bind(this))
+        }
+    }
+
+    preventLineBreaks(e) {
+        if (e.which === 13) e.preventDefault();
+    }
+
+    editTask(e) {
+        const taskId = e.target.parentElement.dataset.id
+        this._model.editTask(this.currentProjectId, taskId, e.target.textContent)
+    }
+
+    editProject(e) {
+        this._model.editProject(this.currentProjectId, e.target.textContent)
     }
 
     setActiveProject() {

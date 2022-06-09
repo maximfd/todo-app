@@ -32,4 +32,8 @@ export default class Project {
         this.tasks.splice(this.tasks.findIndex(item => item.id === id), 1)
     }
 
+    editProject(content) {
+        this.title = content
+    }
+
 }

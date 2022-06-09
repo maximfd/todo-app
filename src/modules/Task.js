@@ -16,4 +16,8 @@ export default class Task {
     toggleStatus() {
         this.isDone = !this.isDone
     }
+
+    editTask(content) {
+        this.title = content
+    }
 }
