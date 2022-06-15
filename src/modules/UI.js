@@ -2,61 +2,59 @@ export default class UI {
     constructor() {
         this.app = document.querySelector('#root')
 
-        this.sidebar = document.createElement('div')
-        this.sidebar.classList.add('sidebar')
-        this.sideTitle = document.createElement('h2')
-        this.sideTitle.classList.add('section-title', 'projects-title')
+        // SECTION --sidebar
+        this.sidebar = this.createElement('div', 'sidebar')
+        this.sideTitle = this.createElement('h2', 'section-title', 'projects-title')
         this.sideTitle.textContent = 'Projects'
-        this.projectsList = document.createElement('ul')
-        this.projectsList.classList.add('projects-list')
 
-        this.projectForm = document.createElement('form')
-        this.projectForm.classList.add('form', 'projects-form')
+        // SECTION --main
+        this.main = this.createElement('div', 'main')
+        this.mainTitle = this.createElement('h2', 'section-title', 'tasks-title')
+        this.mainTitle.textContent = 'Tasks'
+        this.mainTitle.contentEditable = true
 
-        this.projectInput = document.createElement('input')
-        this.projectInput.classList.add('form__input')
-        this.projectInput.type = 'text'
-        this.projectInput.placeholder = 'Add new project'
-        this.projectInput.name = 'project'
+        // LISTS
+        this.projectsList = this.createElement('ul', 'projects-list')
+        this.tasksList = this.createElement('ul', 'tasks-list')
 
-        this.submitProjectBtn = document.createElement('button')
-        this.submitProjectBtn.classList.add('form__btn')
-        this.submitProjectBtn.type = 'submit'
-        this.submitProjectBtn.innerHTML = '&#43;'
-
+        //FORM --projects
+        this.projectForm = this.createElement('form', 'form', 'projects-form')
+        this.projectInput = this.createFormInput('project', 'Add new project')
+        this.submitProjectBtn = this.createSubmitButton('form__btn')
         this.projectForm.append(this.projectInput, this.submitProjectBtn)
+
+        // FORM --tasks
+        this.taskForm = this.createElement('form', 'form', 'task-form')
+        this.taskInput = this.createFormInput('task', 'Add new task')
+        this.submitTaskBtn = this.createSubmitButton('form__btn')
+        this.taskForm.append(this.taskInput, this.submitTaskBtn)
 
 
         this.sidebar.append(this.sideTitle, this.projectForm, this.projectsList)
-
-        this.main = document.createElement('div')
-        this.main.classList.add('main')
-        this.mainTitle = document.createElement('h2')
-        this.mainTitle.classList.add('section-title', 'tasks-title')
-        this.mainTitle.textContent = 'Tasks'
-        this.mainTitle.contentEditable = true
-        this.tasksList = document.createElement('ul')
-        this.tasksList.classList.add('tasks-list')
-
-        this.taskForm = document.createElement('form')
-        this.taskForm.classList.add('form', 'task-form')
-
-        this.taskInput = document.createElement('input')
-        this.taskInput.classList.add('form__input')
-        this.taskInput.type = 'text'
-        this.taskInput.placeholder = 'Add new project'
-        this.taskInput.name = 'project'
-
-        this.submitTaskBtn = document.createElement('button')
-        this.submitTaskBtn.classList.add('form__btn')
-        this.submitTaskBtn.type = 'submit'
-        this.submitTaskBtn.innerHTML = '&#43;'
-
-        this.taskForm.append(this.taskInput, this.submitTaskBtn)
-
         this.main.append(this.mainTitle, this.taskForm, this.tasksList)
 
         this.app.append(this.sidebar, this.main)
+    }
+
+    createElement(tag, ...classList) {
+        const element = document.createElement(tag)
+        element.classList.add(...classList)
+        return element
+    }
+
+    createFormInput(name, placeholder = "") {
+        const input = this.createElement('input', 'form__input')
+        input.type = 'text'
+        input.placeholder = placeholder
+        input.name = name
+        return input
+    }
+
+    createSubmitButton(...classList) {
+        const button = this.createElement('button', ...classList)
+        button.type = 'submit'
+        button.innerHTML = '&#43;'
+        return button
     }
 
     displayProjects(projects) {
@@ -77,8 +75,7 @@ export default class UI {
     }
 
     createProject(id, title) {
-        const project = document.createElement('li')
-        project.classList.add('project')
+        const project = this.createElement('li', 'project')
         project.dataset.id = id
         project.innerHTML = `
             <p class="project__title">${title}</p>
@@ -90,25 +87,22 @@ export default class UI {
     }
 
     createTask(id, title, isDone) {
-        const task = document.createElement('li')
-        task.classList.add('task')
+        const task = this.createElement('li', 'task')
         task.dataset.id = id
 
-        const checkbox = document.createElement('input')
+        const checkbox = this.createElement('input', 'task-status')
         checkbox.type = 'checkbox'
         checkbox.name = 'status'
         checkbox.id = 'status'
         checkbox.checked = isDone
 
-        const taskTitle = document.createElement('p')
-        taskTitle.classList.add('task-title')
+        const taskTitle = this.createElement('p', 'task-title')
         taskTitle.textContent = title
         taskTitle.contentEditable = true
 
-        const button = document.createElement('button')
+        const button = this.createElement('button', 'button', 'icon-button')
         button.type = 'button'
         button.name = 'delete'
-        button.classList.add('button', 'icon-button')
         button.innerHTML = '&#x2716'
 
         task.append(checkbox, taskTitle, button)
