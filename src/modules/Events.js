@@ -21,8 +21,8 @@ export default class Events {
     }
 
     projectEvents(e) {
-        if (e.target.name === 'delete') {
-            const projectId = e.target.parentElement.dataset.id
+        if (e.target.parentElement.name === 'delete') {
+            const projectId = e.target.parentElement.parentElement.dataset.id
             this._model.deleteProject(projectId)
             this._view.displayProjects(this._model.projectsList)
         } else {
@@ -45,8 +45,8 @@ export default class Events {
             const taskId = e.target.parentElement.dataset.id
             this._model.toggleStatus(this.currentProjectId, taskId)
         }
-        if (e.target.name === 'delete') {
-            const taskId = e.target.parentElement.dataset.id
+        if (e.target.parentElement.name === 'delete') {
+            const taskId = e.target.parentElement.parentElement.dataset.id
             this._model.deleteTask(this.currentProjectId, taskId)
             this._view.displayTasks(this._model.getProject(this.currentProjectId))
         }

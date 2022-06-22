@@ -10,6 +10,7 @@ body {
     height: 100vh;
     font-size: 1rem;
     font-family: 'Poppins', sans-serif;
+    color: var(--main-text-color);
 }
 
 #root {
@@ -17,51 +18,24 @@ body {
     height: inherit;
 }
 
-.sidebar {
-    flex: 1;
-    max-width: 380px;
-    padding: 2em;
-    /* temp */
-    background-color: #98CBB4;
+:root {
+    --main-text-color: #102542;
 }
 
-.main {
-    flex: 2;
-    display: inline-block;
-    padding: 2em;
-    /* temp */
-    background-color: #7BA098;
-}
+/*---- INITIAL STYLES FOR COMMON ELEMENTS----*/
 
-.section-title {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: .75em;
-}
-
-.form {
-    margin-bottom: 1.5em;
-    display: flex;
-}
-
-.form__input,
-.form__btn {
+.icon-button {
     font-family: inherit;
-    font-size: 1.1rem;
-    -webkit-appearance: none;
+    font-size: inherit;
+    overflow: visible;
+    text-transform: none;
+    -webkit-appearance: button;
     border: none;
-    border-radius: 0.25em;
-}
-
-.form__input {
-    padding: 0.5em 0.75em;
-    flex: 1;
-}
-
-.form__btn {
-    padding: 0.5em 1em;
-    margin-left: 0.5em;
+    background-color: transparent;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: #ccc;
 }
 
 ul {
@@ -75,33 +49,294 @@ ul>li {
     align-items: center;
 }
 
-.project__title,
-.task-title {
-    flex: 1;
+.form__input,
+.form__btn {
+    font-family: inherit;
+    font-size: 1.1rem;
+    -webkit-appearance: none;
+    border: none;
+    border-radius: 0.25em;
 }
 
-#status {
+.form__input {
+    background-color: #F3F5F7;
+    border: 2px solid transparent;
+}
+
+.form__btn {
+    padding: 0.5em 1em;
+    cursor: pointer;
+    color: #FFFFFF;
+    background-color: hsla(229, 64%, 49%, 0.8);
+    cursor: pointer;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    font: inherit;
+    color: #000;
     width: 1.15em;
     height: 1.15em;
+    border: 0.09em solid #000;
+    border-radius: 0.15em;
+    display: grid;
+    place-content: center;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:hover {
+    background-color: #eee;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #2D4ACD;
+    transform-origin: bottom left;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+/*------ SIDEBAR-SECTION -----*/
+
+.sidebar {
+    flex: 1;
+    max-width: 380px;
+    padding: 2em 1.5em;
+    display: flex;
+    flex-direction: column;
+    background-color: #F3F5F7;
+}
+
+/*------ SIDEBAR-SECTION__LOGO -----*/
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.4em;
+}
+
+.logo__icon {
+    display: block;
+    width: 64px;
+    height: 64px;
+}
+
+.logo__title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: 0.5em;
+    margin-right: auto;
+}
+
+.hide-btn {
+    /* maybe */
+}
+
+/*------ SIDEBAR-SECTION__PROJECTS-LIST -----*/
+
+.project {
+    cursor: pointer;
+    border-radius: 0.4em;
+}
+
+.projects-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.project__title {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.user-projects {
+    overflow-y: auto;
+}
+
+.user-projects .project__title::before {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    background-color: #2D4ACD;
+    border-radius: 50%;
+    margin-right: 1em;
+    opacity: 0.2;
+}
+
+.user-projects .project_active .project__title::before {
+    opacity: 1;
+}
+
+.default-projects .project {
+    color: #ccc;
+}
+
+.default-projects .project__title {
+    margin-left: 0.8em;
+    color: #ccc;
+}
+
+.side-title-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1.5em 0;
+}
+
+.expand-form-btn:hover {
+    color: #2D4ACD;
+}
+
+.delete-btn span {
+    color: transparent;
+    font-size: 1rem;
+}
+
+.project:hover>.icon-button>span,
+.task:hover>.icon-button>span {
+    color: #ccc;
+}
+
+.project:hover>.icon-button:hover>span,
+.task:hover>.icon-button:hover>span {
+    color: #555;
+}
+
+.project:hover {
+    background-color: rgba(238, 238, 238, 0.696);
+}
+
+.project.project_active {
+    font-weight: 600;
+    background-color: #fff;
+}
+
+/*------ SIDEBAR-SECTION__PROJECTS-FORM -----*/
+
+.projects-form {
+    padding: 0.5em 1em;
+    background-color: #F3F5F7;
+    box-shadow: hsl(229deg 64% 49% / 21%) 0px 2px 6px, #2d4acd1a 0px 1px 2px;
+    border-radius: 0.5em;
+    display: grid;
+    grid-template-columns: 1fr 60px 60px;
+    grid-template-rows: 40px 30px;
+    column-gap: 5px;
+    margin-bottom: 1.5em;
+}
+
+.projects-form .form__input {
+    font-size: 0.9rem;
+    border: none;
+    background-color: transparent;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.projects-form input:active,
+.projects-form input:focus,
+.projects-form input:hover {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.submit-btn {
+    font-family: inherit;
+    font-size: 0.6rem;
+    font-weight: 400;
+    padding: 0.25em 0.75em;
+    border-radius: 0.6em;
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+.cancel-btn {
+    font-family: inherit;
+    font-size: 0.6rem;
+    font-weight: 400;
+    padding: 0.25em 0.75em;
+    border-radius: 0.4em;
+    background-color: #ccc;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+/*------ MAIN-SECTION -----*/
+
+.main {
+    flex: 2;
+    padding: 2em;
+}
+
+.tasks-title {
+    padding: 0.5em 0;
+    margin-bottom: 0.5em;
+}
+
+.task-form {
+    margin-bottom: 1.5em;
+    display: flex;
+}
+
+.task-form>input {
+    flex: 1;
+    padding: 0.5em 0.75em;
+}
+
+.task-form .form__btn {
+    margin-left: 0.5em;
+}
+
+.task {
+    overflow: hidden;
+    font-size: 1rem;
+    padding: 0.75em 1em;
+    border-bottom: 1px solid rgba(238, 238, 238, 0.696);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.task:hover {
+    background-color: rgba(238, 238, 238, 0.696);
+    border-radius: 0.4em;
+}
+
+.task.checked>input {
+    border: 0.1em solid #ccc;
 }
 
 .task-title {
     margin-left: 0.5em;
+    flex: 1;
+    line-height: 1.1;
+    overflow: hidden;
+    min-width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0.5em;
 }
 
-.icon-button {
-    font-family: inherit;
-    font-size: inherit;
-    margin-left: 1em;
-    overflow: visible;
-    text-transform: none;
-    -webkit-appearance: button;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+.task-title:focus {
+    outline: 0;
+    background: rgba(179, 207, 255, 0.22)
 }
 
-.project_active {
-    font-weight: 600;
-    background-color: #B5FED9;
+input[type="checkbox"]:checked+.task-title {
+    color: #ccc;
 }
