@@ -17,7 +17,30 @@ export default class Events {
         this._view.mainTitle.addEventListener('keypress', this.preventLineBreaks)
         this._view.mainTitle.addEventListener('blur', this.editProject.bind(this))
 
+        this._view.hideBtn.addEventListener('click', this.toggleStatusSidebar.bind(this))
+
+        this.mediaQueryList = window.matchMedia("(max-width: 900px)");
+        this.mediaQueryList.addEventListener('change', this.handleOrientationChange.bind(this));
+
+        // initial hundler running
+        this.handleOrientationChange(this.mediaQueryList);
+
         this.setActiveProject()
+    }
+
+    toggleStatusSidebar() {
+        this._view.sidebar.classList.toggle('is-active')
+        this._view.hideBtn.classList.toggle('is-active')
+    }
+
+    handleOrientationChange(mql) {
+        if (mql.matches) {
+            this._view.sidebar.classList.remove('is-active')
+            this._view.hideBtn.classList.add('is-active')
+        } else {
+            this._view.sidebar.classList.add('is-active')
+            this._view.hideBtn.classList.remove('is-active')
+        }
     }
 
     projectEvents(e) {

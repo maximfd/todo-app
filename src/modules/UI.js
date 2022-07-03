@@ -3,7 +3,7 @@ export default class UI {
         this.app = document.querySelector('#root')
 
         // SECTION --sidebar
-        this.sidebar = this.createElement('div', 'sidebar')
+        this.sidebar = this.createElement('div', 'sidebar', 'is-active')
         this.logo = this.createLogoSection()
         this.hideBtn = this.createElement('button', 'hide-btn', 'icon-button')
         this.hideBtn.innerHTML = `

@@ -108,12 +108,41 @@ input[type="checkbox"]:checked::before {
 /*------ SIDEBAR-SECTION -----*/
 
 .sidebar {
-    flex: 1;
     max-width: 380px;
+    width: 100%;
     padding: 2em 1.5em;
     display: flex;
     flex-direction: column;
     background-color: #F3F5F7;
+    position: absolute;
+    top: 0;
+    left: -380px;
+    height: 100vh;
+    transition: 0.2s linear;
+    z-index: 5;
+}
+
+.sidebar.is-active {
+    position: relative;
+    max-width: 380px;
+    left: 0;
+}
+
+@media (max-width: 900px) {
+
+    .sidebar {
+        position: absolute;
+        top: 0;
+        left: -380px;
+        max-width: 380px;
+        height: 100vh;
+        transition: 0.2s linear;
+    }
+
+    .sidebar.is-active {
+        position: absolute;
+        left: 0;
+    }
 }
 
 /*------ SIDEBAR-SECTION__LOGO -----*/
@@ -126,8 +155,8 @@ input[type="checkbox"]:checked::before {
 
 .logo__icon {
     display: block;
-    width: 64px;
-    height: 64px;
+    width: 62px;
+    height: 62px;
 }
 
 .logo__title {
@@ -137,8 +166,10 @@ input[type="checkbox"]:checked::before {
     margin-right: auto;
 }
 
-.hide-btn {
-    /* maybe */
+.hide-btn.is-active {
+    position: relative;
+    left: 60px;
+    transform: rotateY(180deg);
 }
 
 /*------ SIDEBAR-SECTION__PROJECTS-LIST -----*/
@@ -279,8 +310,8 @@ input[type="checkbox"]:checked::before {
 /*------ MAIN-SECTION -----*/
 
 .main {
-    flex: 2;
-    padding: 2em;
+    width: 100%;
+    padding: 2em 3em;
 }
 
 .tasks-title {
@@ -291,6 +322,11 @@ input[type="checkbox"]:checked::before {
 .task-form {
     margin-bottom: 1.5em;
     display: flex;
+    max-width: 650px;
+}
+
+.tasks-list {
+    max-width: 650px;
 }
 
 .task-form>input {
