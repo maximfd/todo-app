@@ -293,7 +293,7 @@ input[type="checkbox"]:checked::before {
 .submit-btn {
     font-family: inherit;
     font-size: 0.6rem;
-    font-weight: 400;
+    font-weight: 500;
     padding: 0.25em 0.75em;
     border-radius: 0.6em;
     grid-column-start: 3;
@@ -303,10 +303,12 @@ input[type="checkbox"]:checked::before {
 .cancel-btn {
     font-family: inherit;
     font-size: 0.6rem;
-    font-weight: 400;
+    font-weight: 500;
+    color: #ccc;
     padding: 0.25em 0.75em;
     border-radius: 0.4em;
-    background-color: #ccc;
+    border: 1px solid #ccc;
+    background-color: transparent;
     grid-column-start: 2;
     grid-column-end: 3;
 }

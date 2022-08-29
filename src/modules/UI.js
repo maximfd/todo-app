@@ -36,8 +36,8 @@ export default class UI {
         //FORM --projects
         this.projectForm = this.createElement('form', 'form', 'projects-form')
         this.projectInput = this.createFormInput('project', 'New project')
-        this.submitProjectBtn = this.createFormButton('submit', 'Create', 'form__btn', 'submit-btn')
-        this.cancelProjectBtn = this.createFormButton('button', 'Cancel', 'form__btn', 'cancel-btn')
+        this.submitProjectBtn = this.createFormButton('submit', 'add', 'form__btn', 'submit-btn')
+        this.cancelProjectBtn = this.createFormButton('button', 'cancel', 'form__btn', 'cancel-btn')
         this.projectForm.append(this.projectInput, this.cancelProjectBtn, this.submitProjectBtn)
 
         // FORM --tasks
