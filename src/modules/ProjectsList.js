@@ -66,7 +66,9 @@ export default class ProjectsList {
 
     setDefaultProjects() {
         return [
-            Object.assign(new Project(), { id: 'inbox', title: 'Inbox', tasks: [] })
+            Object.assign(new Project(), { id: 'inbox', title: 'Inbox', tasks: [] }),
+            Object.assign(new Project(), { id: 'today', title: 'Today', tasks: [] }),
+            Object.assign(new Project(), { id: 'upcoming', title: 'Upcoming', tasks: [] })
         ]
     }
 

@@ -9,6 +9,7 @@ export default class Events {
         this._view.displayTasks(this._model.getProject(this.currentProjectId))
 
         this._view.projectsList.addEventListener('click', this.projectEvents.bind(this))
+        this._view.defaultProjects.addEventListener('click', this.projectEvents.bind(this))
         this._view.tasksList.addEventListener('click', this.taskEvents.bind(this))
 
         this._view.projectForm.addEventListener('submit', this.submitProjectsForm.bind(this))

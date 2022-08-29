@@ -12,7 +12,7 @@ export default class UI {
                 </span>`
         this.logo.append(this.hideBtn)
 
-        this.defaultProjects = this.createDefaultProjectsSection()
+        this.defaultProjects = this.createElement('ul', 'projects-list', 'default-projects')
         this.sideTitleBlock = this.createElement('div', 'side-title-block')
         this.sideTitle = this.createElement('h2', 'projects-title')
         this.sideTitle.textContent = 'Projects'
@@ -75,32 +75,6 @@ export default class UI {
         return logo
     }
 
-    createDefaultProjectsSection() {
-        const defaultProjects = this.createElement('div', 'default-projects')
-        defaultProjects.innerHTML = `
-                <ul class="list">
-                    <li class="project active">
-                        <span class="project__icon material-symbols-outlined">
-                            inbox
-                        </span>
-                        <p class="project__title">Inbox</p>
-                    </li>
-                    <li class="project">
-                        <span class="project__icon material-symbols-outlined">
-                            today
-                        </span>
-                        <p class="project__title">Today</p>
-                    </li>
-                    <li class="project">
-                        <span class="project__icon material-symbols-outlined">
-                            event_upcoming
-                        </span>
-                        <p class="project__title">Upcoming</p>
-                    </li>
-                </ul>`
-        return defaultProjects
-    }
-
     createFormButton(type, text, ...classList) {
         const button = this.createElement('button', ...classList)
         button.type = type
@@ -111,9 +85,15 @@ export default class UI {
 
     displayProjects(projects) {
         this.projectsList.innerHTML = ''
+        this.defaultProjects.innerHTML = ''
         projects.forEach(element => {
-            const project = this.createProject(element.id, element.title)
-            this.projectsList.appendChild(project)
+            if (element.id === 'inbox' || element.id === 'today' || element.id === 'upcoming') {
+                const defProject = this.createDefaultProject(element.id, element.title)
+                this.defaultProjects.appendChild(defProject)
+            } else {
+                const project = this.createProject(element.id, element.title)
+                this.projectsList.appendChild(project)
+            }
         });
     }
 
@@ -136,6 +116,18 @@ export default class UI {
                     delete
                 </span>
             </button>`
+
+        return project
+    }
+
+    createDefaultProject(id, title) {
+        const project = this.createElement('li', 'project')
+        project.dataset.id = id
+        project.innerHTML = `
+            <span class="project__icon material-symbols-outlined">
+                ${id}
+            </span>
+            <p class="project__title">${title}</p>`
 
         return project
     }
