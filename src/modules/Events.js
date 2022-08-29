@@ -17,6 +17,7 @@ export default class Events {
         this._view.mainTitle.addEventListener('keypress', this.preventLineBreaks)
         this._view.mainTitle.addEventListener('blur', this.editProject.bind(this))
 
+        this._view.addProjectBtn.addEventListener('click', this.toggleProjectForm.bind(this))
         this._view.hideBtn.addEventListener('click', this.toggleStatusSidebar.bind(this))
 
         this.mediaQueryList = window.matchMedia("(max-width: 900px)");
@@ -26,6 +27,10 @@ export default class Events {
         this.handleOrientationChange(this.mediaQueryList);
 
         this.setActiveProject()
+    }
+
+    toggleProjectForm() {
+        this._view.projectForm.classList.toggle('is-active')
     }
 
     toggleStatusSidebar() {
